@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Pristavka Dmitriy</title>
+</head>
+
+<body>
+    <div>
+        <h1>Homework 8</h1>
+        <h2>Обязательное задание</h2>
+        <p> Напилите код, выводящий на страницу текущее время в течение 100 секунд. Подсказка: создайте элемент, в
+            котором будет отображаться текущее время. Контент элемента должен обновляться каждую секунду
+        </p>
+        <div class="code">
+            <pre>
+var count = 0;
+
+var div = document.body.appendChild(document.createElement("div"));
+
+var refreshTime = function () {
+    var time = new Date().toLocaleTimeString();
+    div.innerText = time;
+    count++;
+    count >= 100 ? clearInterval(b) : null;
+}
+
+ var b = setInterval(refreshTime , 10000);
+            </pre>
+        </div>
+    </div>
+    <div>
+        <h2>Дополнительное 1</h2>
+        <p>Завершите код рекурсивной функции typeMessage так, чтобы при ее вызове на страницу выводился один символ в
+            секунду
+        </p>
+        <div class="code">
+            <pre>
+var typeMessage = ( function ( velocity ) {
+    let container = document.getElementById ( "demo" ) ?
+        document.getElementById ( "demo" ) :
+        document.body.appendChild (
+            document.createElement ( "h3" )
+        )
+
+     container.style = `color: magenta;`
+     var index = 0
+     return function ( message ) {
+        if( message.length > index) { 
+            container.innerHTML += message[index++];
+            setTimeout(arguments.callee.bind(null,message),1000/velocity)
+        }
+
+
+    
+    }
+})( 1 ) 
+
+
+typeMessage ( `Welcome to the hell` )
+            </pre>
+        </div>
+    </div>
+    <div>
+        <h2>Дополнительное 2</h2>
+        <p>Нужно сделать так, чтобы у всех экзепляров, созданных конструктором User, был унаследованный метод counter(),
+            который считает созданные конструктором экземпляры. Каждый вызов конструктора увеличивает счетчик
+            экземпляров на 1 и помещать новое значение счетчика в свойство id созданного экземпляра:</p>
+        <div class="code">
+            <pre>
+function User ( name ) {
+    this.name = name
+    this.id = this.counter()
+}
+ User.prototype.count = 0
+ User.prototype.counter = function(){
+     return this.id ? this.id : User.prototype.count++
+ }
+ 
+
+var users = [
+    new User ( "Семен" ),
+    new User ( "Антон" ),
+    new User ( "Демьян" ),
+    new User ( "Василий" )
+]
+            </pre>
+        </div>
+    </div>
+</body>
+
+</html>
